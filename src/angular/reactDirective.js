@@ -8,7 +8,9 @@ const reactDirective = () => {
       props: "="
     },
     link: (scope, element) => {
-      const containerElement = element.parent()[0];
+      const parent = element.parent()[0];
+      const containerElement = document.createElement("div");
+      parent.appendChild(containerElement);
       scope.$watch(
         "props",
         (newValue) => {
