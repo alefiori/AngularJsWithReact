@@ -5,11 +5,12 @@ const reactDirective = () => {
   return {
     scope: {
       component: "=",
-      props: "=",
-      containerId: "=",
+      props: "="
     },
-    link: (scope) => {
-      const containerElement = document.getElementById(scope.containerId);
+    link: (scope, element) => {
+      const parent = element.parent()[0];
+      const containerElement = document.createElement("div");
+      parent.appendChild(containerElement);
       scope.$watch(
         "props",
         (newValue) => {
